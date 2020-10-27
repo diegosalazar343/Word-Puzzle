@@ -17,30 +17,37 @@
 
 $(document).ready(function() {
   $("form#puzzle").submit(function(event) {
-    event.preventDefualt();
+    event.preventDefault();
 
-    function withoutVowels(string) {
-    let withoutVowels = "";
-    for (let i=0; i < string.length; i++) {
-      if (isVowel(string[i])) {
-        withoutVowels.replace(i, "-");
+    function withoutVowels() {
+      let withoutVowels = $("#input1").val();
+      let withDash = "";
+      for (let i=0; i < withoutVowels.length; i++) {
+        if (isVowel(withoutVowels[i])) {
+          withDash += "-";
+          // withoutVowels.replace(withoutVowels[i], "-");
+        } else {
+          withDash += withoutVowels[i];
+        }
       }
+      return withDash;
     }
-    return withoutVowels;
-  }
-  function isVowel(char) {
-    return 'aeiou'.includes(char);
+
+    function isVowel(char) {
+      return 'aeiou'.includes(char);
+    }
+    console.log(withoutVowels());
   });
-  console.log(withoutVowels('Hello World!'));
 });
 
+
 /*
-function withoutVowels(string) {
+function withoutVowels(withoutVowels) {
 
   var withoutVowels = "";
-  for (var i = 0; i < string.length; i++) {
-      if (!isVowel(string[i])) {
-        withoutVowels += string[i];
+  for (var i = 0; i < withoutVowels.length; i++) {
+      if (!isVowel(withoutVowels[i])) {
+        withoutVowels += withoutVowels[i];
       }
     }
     return withoutVowels;
